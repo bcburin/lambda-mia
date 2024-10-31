@@ -1,0 +1,25 @@
+-- Define boolean values
+True = \x.\y.x;
+False = \x.\y.y;
+
+-- Define logic operators
+And = \b1.\b2.((b1 b2) False);
+Or = \b1.\b2.((b1 True) b2);
+Not = \b.((b False) True);
+
+-- Define arithmetic operations for integers
+Suc = \n.\f.\x.(f ((n f) x));
+Sum = \m.\n.((m Suc) n);
+Mul = \m.\n.((m (Sum n)) 0);
+
+-- Comparison operators
+GtZero = \n.((n (\x.True)) False);
+EqZero = \n.((n (\x.False)) True);
+
+-- Test booleans
+
+((And True) False);
+((And True) True);
+((Or False) False);
+((Or False) True);
+((Or False) (Not False));
